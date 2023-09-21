@@ -34,6 +34,17 @@ public class ChurchMemberDao {
         }
     }
 
+    public ChurchMember getMemberByID(int ID) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return (ChurchMember) session.get(ChurchMember.class, ID);
+        }
+    }
+    public ChurchMember getMemberByName(String FirstName) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return (ChurchMember) session.get(ChurchMember.class, FirstName);
+        }
+    }
+
     public List<ChurchMember> getMembers() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from ChurchMember", ChurchMember.class).list();

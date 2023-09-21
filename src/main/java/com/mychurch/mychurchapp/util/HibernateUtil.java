@@ -29,7 +29,8 @@ public class HibernateUtil {
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/mychurchdb?zeroDateTimeBehavior=CONVERT_TO_NULL");
+//                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/mychurchdb?zeroDateTimeBehavior=CONVERT_TO_NULL");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/cmemcb?zeroDateTimeBehavior=CONVERT_TO_NULL");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "admin123");
 

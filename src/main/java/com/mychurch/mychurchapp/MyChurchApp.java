@@ -15,8 +15,10 @@ public class MyChurchApp {
         ChurchMember member = new ChurchMember("Arkadiusz", "Kuzma", 30);
 
         memberDao.saveMember(member);
-
-        List<ChurchMember> members = memberDao.getMembers();
-        members.forEach(s -> System.out.println(s.getFirstName()));
+//
+//        List<ChurchMember> members = memberDao.getMembers();
+//        members.forEach(s -> System.out.println(s.getFirstName()));
+//        System.out.println(memberDao.getMemberByID(1).toString());
+        System.out.println(memberDao.getMemberByName("Arkadiusz").toString());
     }
 }
