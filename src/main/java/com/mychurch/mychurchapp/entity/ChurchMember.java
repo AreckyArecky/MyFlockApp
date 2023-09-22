@@ -31,8 +31,8 @@ public class ChurchMember {
     @Column(name = "isMember")
     private boolean isMember;
 
-    @Column(name = "Func")
-    private String function;
+    @Column(name = "Service")
+    private String service;
 
     @Column(name = "PhoneNumber")
     private int phoneNumber;
@@ -83,17 +83,25 @@ public class ChurchMember {
         this.isMember = isMember;
     }
 
-    public String getFunction() {
-        return function;
+    public String getService() {
+        return service;
     }
 
-    public void setFunction(String function) {
-        this.function = function;
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
-        return "ChurchMember{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", age=" + age + ", isMember=" + isMember + ", function=" + function + ", phoneNumber=" + phoneNumber + '}';
+        return "ChurchMember{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", age=" + age + ", isMember=" + isMember + ", function=" + service + ", phoneNumber=" + phoneNumber + '}';
     }
 
 }

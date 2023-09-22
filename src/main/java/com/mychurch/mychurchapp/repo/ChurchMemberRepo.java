@@ -16,8 +16,8 @@ import jakarta.persistence.EntityTransaction;
  */
 public class ChurchMemberRepo {
 
-    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
-    private static EntityManager em = factory.createEntityManager();
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("thePersistenceUnit");
+    private static EntityManager em = emf.createEntityManager();
 
     public void createMember(String firstName, String secondName, int age) {
         ChurchMember newMember = new ChurchMember(firstName, secondName, age);
@@ -27,6 +27,62 @@ public class ChurchMemberRepo {
 
         System.out.println(" New Guest ID " + newMember.getId());
 
+        trans.commit();
+    }
+
+    public ChurchMember findById(int id) {
+        em.clear();
+        return em.find(ChurchMember.class, id);
+
+    }
+
+    public void updateAge(ChurchMember member, int age) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setAge(age);
+        trans.commit();
+    }
+
+    public void updateFirstName(ChurchMember member, String firstName) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setFirstName(firstName);
+        trans.commit();
+    }
+
+    public void updateSecondName(ChurchMember member, String secondName) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setSecondName(secondName);
+        trans.commit();
+    }
+
+    public void updateService(ChurchMember member, String service) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setService(service);
+        trans.commit();
+    }
+
+    public void updateIsMember(ChurchMember member, boolean isMember) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setIsMember(isMember);
+        trans.commit();
+
+    }
+
+    public void updatePhoneNumber(ChurchMember member, int phoneNumber) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setPhoneNumber(phoneNumber);
+        trans.commit();
+    }
+
+    public void deleteMember(ChurchMember member) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        em.remove(member);
         trans.commit();
     }
 }
