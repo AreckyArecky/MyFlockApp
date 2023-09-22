@@ -47,6 +47,10 @@ public class ChurchMember {
         this.age = age;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
