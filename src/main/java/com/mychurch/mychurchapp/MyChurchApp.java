@@ -1,7 +1,7 @@
 package com.mychurch.mychurchapp;
 
 import java.util.List;
-import com.mychurch.mychurchapp.dao.ChurchMemberDao;
+import com.mychurch.mychurchapp.repo.ChurchMemberRepo;
 import com.mychurch.mychurchapp.entity.ChurchMember;
 
 /**
@@ -11,14 +11,7 @@ import com.mychurch.mychurchapp.entity.ChurchMember;
 public class MyChurchApp {
 
     public static void main(String[] args) {
-        ChurchMemberDao memberDao = new ChurchMemberDao();
-        ChurchMember member = new ChurchMember("Arkadiusz", "Kuzma", 30);
-
-        memberDao.saveMember(member);
-//
-//        List<ChurchMember> members = memberDao.getMembers();
-//        members.forEach(s -> System.out.println(s.getFirstName()));
-//        System.out.println(memberDao.getMemberByID(1).toString());
-        System.out.println(memberDao.getMemberByName("Arkadiusz").toString());
+        ChurchMemberRepo memberRepo = new ChurchMemberRepo();
+        memberRepo.createMember("Arkadiusz", "Sosna", 22);
     }
 }
