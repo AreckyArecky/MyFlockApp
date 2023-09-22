@@ -5,8 +5,8 @@
              version="2.0">
     <persistence-unit name="thePersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-<!--        <class></class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <class>com.mychurch.mychurchapp.entity.ChurchMember</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cmemcb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
@@ -20,8 +20,9 @@
         </properties>
     </persistence-unit>
     <persistence-unit name="authPersistenceUnit" transaction-type="RESOURCE_LOCAL">
-<!--        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.mychurch.mychurchapp.auth.entity.User</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/authdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
