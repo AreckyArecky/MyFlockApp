@@ -8,7 +8,11 @@ package view;
  *
  * @author DevelopmentMPOS
  */
-import com.mychurch.mychurchapp.auth.repo.UserRepo;
+import com.mychurch.mychurchapp.auth.UserRepo;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -91,21 +95,27 @@ public class LoginView extends Application {
         });
 
         loginBtn.setOnAction((event) -> {
-            UserRepo repo = new UserRepo();
-            if (usernameField.getText().isEmpty()) {
-                loginMsg.setText("You must enter username!");
-            } else if (pwdField.getText().isEmpty()) {
-                loginMsg.setText("You must enter password!");
-            }
-            if (repo.auth(usernameField.getText(), pwdField.getText())) {
-                loginMsg.setText("Login successful!");
+            try {
+                UserRepo repo = new UserRepo();
+                if (usernameField.getText().isEmpty()) {
+                    loginMsg.setText("You must enter username!");
+                } else if (pwdField.getText().isEmpty()) {
+                    loginMsg.setText("You must enter password!");
+                }
+                if (repo.auth(usernameField.getText(), pwdField.getText())) {
+                    loginMsg.setText("Login successful!");
 
-                MainView main = new MainView();
-                main.start(window);
+                    MainView main = new MainView();
+                    main.start(window);
 
-            } else {
-                loginMsg.setText("Incorrect username or password!");
+                } else {
+                    loginMsg.setText("Incorrect username or password!");
 
+                }
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvalidKeySpecException ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }

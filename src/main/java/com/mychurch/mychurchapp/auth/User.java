@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mychurch.mychurchapp.auth.entity;
+package com.mychurch.mychurchapp.auth;
 
 import jakarta.persistence.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  *
@@ -25,9 +27,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public User(String username, String password) {
+    public User(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.username = username;
-        this.password = password;
+        this.password = PassHash.createHash(password);
     }
 
     public User() {
@@ -54,8 +56,8 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        this.password = PassHash.createHash(password);
     }
 
     @Override
