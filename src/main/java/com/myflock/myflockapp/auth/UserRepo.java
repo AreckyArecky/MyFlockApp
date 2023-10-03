@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mychurch.mychurchapp.auth;
+package com.myflock.myflockapp.auth;
 
 import jakarta.persistence.*;
-import com.mychurch.mychurchapp.auth.User;
+import com.myflock.myflockapp.auth.User;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -61,8 +61,15 @@ public class UserRepo {
         query.setMaxResults(1);
 
         List<User> resultList = query.getResultList();
-        User result = resultList.get(0);
-        trans.commit();
-        return PassHash.validatePassword(password, result.getPassword());
+        if (!resultList.isEmpty()) {
+            User result = resultList.get(0);
+            trans.commit();
+
+            return PassHash.validatePassword(password, result.getPassword());
+        } else {
+            trans.rollback();
+            return false;
+
+        }
     }
 }

@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package view;
+package com.myflock.myflockapp.view;
 
 /**
  *
  * @author DevelopmentMPOS
  */
-import com.mychurch.mychurchapp.auth.UserRepo;
+import com.myflock.myflockapp.auth.UserRepo;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 
-public class LoginView extends Application {
+public class LoginViewer extends Application {
 
     public void start(Stage window) {
 
@@ -113,9 +113,9 @@ public class LoginView extends Application {
 
                 }
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginViewer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InvalidKeySpecException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginViewer.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }

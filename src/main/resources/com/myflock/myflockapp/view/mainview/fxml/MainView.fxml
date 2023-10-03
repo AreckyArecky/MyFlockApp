@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainViewAnchorPane" minHeight="600.0" minWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
+    <stylesheets>
+        <URL value="@/styles/mainview.css" />
+    </stylesheets>
+   <children>
+      <GridPane prefHeight="601.0" prefWidth="801.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.3333435058594" minWidth="10.0" prefWidth="182.33334350585938" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="618.6666564941406" minWidth="10.0" prefWidth="618.6666564941406" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="191.66665649414062" minHeight="3.6666616201400757" prefHeight="64.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="510.0" minHeight="10.0" prefHeight="508.66668701171875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="292.66668701171875" minHeight="10.0" prefHeight="18.33331298828125" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1">
+               <children>
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Members">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Finances">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Media">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Logout">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="64.0" prefWidth="44.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="34.0" text="User:" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="56.0">
+                     <children>
+                        <Label text="&quot; &quot;" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="68.0" text="User panel" textAlignment="CENTER" wrapText="true" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <tabs>
+                <Tab text="Welcome">
+                     <content>
+                        <TextArea prefHeight="200.0" prefWidth="200.0" text="Welcome to MyFlock v0.1!&#10;&#10;You can manage your Members, Finances and Media from here.&#10;">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </TextArea>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

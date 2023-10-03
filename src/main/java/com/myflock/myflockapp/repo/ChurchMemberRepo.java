@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mychurch.mychurchapp.repo;
+package com.myflock.myflockapp.repo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import com.mychurch.mychurchapp.entity.ChurchMember;
+import com.myflock.myflockapp.entity.ChurchMember;
 import jakarta.persistence.EntityTransaction;
 
 /**
