@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginAnchorPane" onKeyPressed="#enterPressed" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.loginview.LoginViewController">
+    <stylesheets>
+        <URL value="@/styles/loginview.css" />
+    </stylesheets>
+    <children>
+        <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="100.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Welcome to MyCongregation App!" textAlignment="CENTER" translateY="-20.0" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                    <font>
+                        <Font name="Calibri" size="24.0" />
+                    </font>
+                </Label>
+                <Label text="Please enter valid username and password to login." textAlignment="RIGHT" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Calibri" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Ver.  0.1 Beta" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                    </padding>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    <children>
+                        <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label prefHeight="20.0" text="Username:">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" text="Password:">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                            </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets bottom="20.0" right="10.0" />
+                            </padding>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="150.0">
+                            <children>
+                                <TextField fx:id="authUsr" prefHeight="20.0" promptText="username">
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                </TextField>
+                                <PasswordField fx:id="authPass" prefHeight="20.0" promptText="password">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </PasswordField>
+                            </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets bottom="20.0" left="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </HBox>
+                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <top>
+                        <Button fx:id="authBtnLogin" mnemonicParsing="false" onAction="#handleLogin" prefWidth="80.0" text="Login" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets top="20.0" />
+                            </BorderPane.margin>
+                        </Button>
+                    </top>
+                    <bottom>
+                        <Button fx:id="authBtnExit" mnemonicParsing="false" onAction="#handleExit" prefWidth="60.0" text="Exit" BorderPane.alignment="BOTTOM_RIGHT">
+                            <BorderPane.margin>
+                                <Insets bottom="20.0" right="20.0" />
+                            </BorderPane.margin>
+                        </Button>
+                    </bottom>
+                    <center>
+                        <Label fx:id="authLabel" text=" " BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
