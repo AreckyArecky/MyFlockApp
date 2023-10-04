@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -69,9 +70,11 @@ public class LoginViewController implements Initializable {
      *
      *
      */
+    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
+        
         // TODO Auto-generated method stub
         loginAnchorPane.setOnMousePressed((MouseEvent event) -> {
             xOffset = event.getSceneX();

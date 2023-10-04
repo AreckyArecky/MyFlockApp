@@ -37,9 +37,8 @@ public class MyFlockApp extends Application {
             URL fxmlResource = LoginViewController.class.getResource("fxml/LoginView.fxml");
 
             Parent parent = FXMLLoader.load(fxmlResource);
-            
-            stage.setScene(new Scene(parent));
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(MyFlockApp.class.getName()).log(Level.SEVERE, null, ex);
