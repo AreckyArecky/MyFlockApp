@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,9 +30,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
 /**
  * FXML Controller class
@@ -58,6 +61,9 @@ public class LoginViewController implements Initializable {
     @FXML
     private Button authBtnExit;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     /**
      * Initializes the controller class.
      *
@@ -65,7 +71,17 @@ public class LoginViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         // TODO Auto-generated method stub
+        loginAnchorPane.setOnMousePressed((MouseEvent event) -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        loginAnchorPane.setOnMouseDragged((MouseEvent event) -> {
+            Stage stage = (Stage) loginAnchorPane.getScene().getWindow();
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
     }
 
     @FXML
@@ -133,12 +149,13 @@ public class LoginViewController implements Initializable {
     public void switchSceneToMain() {
 
         try {
-            URL fxmlResource = MainViewController.class.getResource("fxml/MainView.fxml");
+            URL fxmlResource = MainViewController.class
+                    .getResource("fxml/MainView.fxml");
             Parent parent = FXMLLoader.load(fxmlResource);
             Stage stage = (Stage) loginAnchorPane.getScene().getWindow();
             stage.setScene(new Scene(parent));
         } catch (IOException ex) {
-            Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }
 
     }

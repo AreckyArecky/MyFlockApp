@@ -1,7 +1,54 @@
 /*
  * Empty Stylesheet file.
  */
+@font-face{
+    src: url('Raleway-Regular.ttf');
+    
+    
+}
+@font-face{
+   
+    src: url('Raleway-Bold.ttf');
+    
+}
 
 .mainFxmlClass {
 
 }
+
+
+.root{
+    -fx-font-family: 'Raleway';
+    -fx-background-color: #f3f2ed;
+}
+#welcomePane {
+    -fx-background-color: #2596be;
+    -fx-z-index: -1;
+}
+
+#welcomeLabelUpr {
+    -fx-color: #ffffff;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-margin-bottom: 50px;
+
+}
+
+#welcomeLabelLwr {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    
+}
+
+.button {
+    -fx-background-color: #063970;
+    -fx-text-fill: white;
+    -fx-border: none;
+    -fx-font-weight: bold;
+}
+
+.button:hover{
+    -fx-background-color: #1979a9;
+}
+
+

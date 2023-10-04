@@ -15,12 +15,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainViewAnchorPane" minHeight="600.0" minWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
+<AnchorPane id="AnchorPane" fx:id="mainViewAnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
     <stylesheets>
         <URL value="@/styles/mainview.css" />
     </stylesheets>
    <children>
-      <GridPane prefHeight="601.0" prefWidth="801.0">
+      <GridPane>
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.3333435058594" minWidth="10.0" prefWidth="182.33334350585938" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="618.6666564941406" minWidth="10.0" prefWidth="618.6666564941406" />
@@ -86,6 +86,17 @@
                   </Tab>
               </tabs>
             </TabPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="time" text=" ">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </children>

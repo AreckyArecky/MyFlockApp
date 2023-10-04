@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import java.io.IOException;
 import java.net.URL;
 import javafx.scene.Parent;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -38,6 +39,7 @@ public class MyFlockApp extends Application {
             Parent parent = FXMLLoader.load(fxmlResource);
             
             stage.setScene(new Scene(parent));
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(MyFlockApp.class.getName()).log(Level.SEVERE, null, ex);
