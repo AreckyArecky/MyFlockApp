@@ -73,8 +73,7 @@ public class LoginViewController implements Initializable {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        
+
         // TODO Auto-generated method stub
         loginAnchorPane.setOnMousePressed((MouseEvent event) -> {
             xOffset = event.getSceneX();
@@ -85,6 +84,12 @@ public class LoginViewController implements Initializable {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
+    }
+
+    @FXML
+    public void handleMin() {
+        Stage stage = (Stage) authBtnExit.getScene().getWindow();
+        stage.toBack();
     }
 
     @FXML
@@ -155,8 +160,12 @@ public class LoginViewController implements Initializable {
             URL fxmlResource = MainViewController.class
                     .getResource("fxml/MainView.fxml");
             Parent parent = FXMLLoader.load(fxmlResource);
-            Stage stage = (Stage) loginAnchorPane.getScene().getWindow();
+            Stage currentStage = (Stage) loginAnchorPane.getScene().getWindow();
+            Stage stage = new Stage();
             stage.setScene(new Scene(parent));
+            stage.show();
+            currentStage.close();
+
         } catch (IOException ex) {
             ex.getMessage();
         }

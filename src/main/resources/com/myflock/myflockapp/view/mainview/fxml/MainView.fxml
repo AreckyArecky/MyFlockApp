@@ -31,7 +31,7 @@
           <RowConstraints maxHeight="292.66668701171875" minHeight="10.0" prefHeight="18.33331298828125" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1">
+            <HBox alignment="CENTER" spacing="40.0" GridPane.columnIndex="1">
                <children>
                   <Button mnemonicParsing="false" prefWidth="100.0" text="Members">
                      <padding>
@@ -55,7 +55,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_RIGHT">
                <children>
                   <VBox alignment="CENTER" prefHeight="64.0" prefWidth="44.0">
                      <children>
@@ -64,7 +64,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="56.0">
                      <children>
-                        <Label text="&quot; &quot;" />
+                        <Label fx:id="userLabel" text="&quot; &quot;" />
                      </children>
                   </VBox>
                   <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="68.0" text="User panel" textAlignment="CENTER" wrapText="true" />
@@ -73,11 +73,11 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <tabs>
                 <Tab text="Welcome">
                      <content>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" text="Welcome to MyFlock v0.1!&#10;&#10;You can manage your Members, Finances and Media from here.&#10;">
+                        <TextArea text="Welcome to MyFlock v0.1!&#10;&#10;You can manage your Members, Finances and Media from here.&#10;">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -86,7 +86,7 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="time" text=" ">
                      <padding>

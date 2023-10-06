@@ -64,7 +64,8 @@ public class UserRepo {
         if (!resultList.isEmpty()) {
             User result = resultList.get(0);
             trans.commit();
-
+            UserLogged.getInstance(result);
+            
             return PassHash.validatePassword(password, result.getPassword());
         } else {
             trans.rollback();
