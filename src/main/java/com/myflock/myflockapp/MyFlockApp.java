@@ -41,7 +41,7 @@ public class MyFlockApp extends Application {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(MyFlockApp.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }
 
     }

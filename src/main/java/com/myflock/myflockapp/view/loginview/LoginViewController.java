@@ -43,25 +43,25 @@ import javafx.stage.StageStyle;
  * @author DevelopmentMPOS
  */
 public class LoginViewController implements Initializable {
-
+    
     @FXML
     private AnchorPane loginAnchorPane;
-
+    
     @FXML
     private TextField authUsr;
-
+    
     @FXML
     private PasswordField authPass;
-
+    
     @FXML
     private Label authLabel;
-
+    
     @FXML
     private Button authBtnLogin;
-
+    
     @FXML
     private Button authBtnExit;
-
+    
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -85,21 +85,21 @@ public class LoginViewController implements Initializable {
             stage.setY(event.getScreenY() - yOffset);
         });
     }
-
+    
     @FXML
     public void handleMin() {
         Stage stage = (Stage) authBtnExit.getScene().getWindow();
         stage.toBack();
     }
-
+    
     @FXML
     public void handleExit() {
-
+        
         Stage stage = (Stage) authBtnExit.getScene().getWindow();
         // do what you have to do
         stage.close();
     }
-
+    
     @FXML
     private void enterPressed(KeyEvent event) throws IOException {
         KeyCode kc = event.getCode();
@@ -107,12 +107,12 @@ public class LoginViewController implements Initializable {
             handleLogin();
         }
     }
-
+    
     @FXML
     private void handleLogin() {
         boolean logged = false;
         try {
-
+            
             UserRepo repo = new UserRepo();
             if (fieldsEmpty()) {
                 fieldsEmpty();
@@ -126,7 +126,7 @@ public class LoginViewController implements Initializable {
             } else {
                 authLabel.setText("Incorrect username or password!");
                 logged = false;
-
+                
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             Logger.getLogger(LoginViewer.class
@@ -136,18 +136,18 @@ public class LoginViewController implements Initializable {
             switchSceneToMain();
         }
     }
-
+    
     @FXML
     private boolean fieldsEmpty() {
         if (authUsr.getText().isEmpty()) {
             authLabel.setText("You must enter username!");
             return true;
-
+            
         } else if (authPass.getText().isEmpty()) {
             authLabel.setText("You must enter password!");
             return true;
         } else {
-
+            
             return false;
         }
     }
@@ -155,7 +155,7 @@ public class LoginViewController implements Initializable {
 //    SWITCH TO MAIN SCENE
     @FXML
     public void switchSceneToMain() {
-
+        
         try {
             URL fxmlResource = MainViewController.class
                     .getResource("fxml/MainView.fxml");
@@ -163,12 +163,13 @@ public class LoginViewController implements Initializable {
             Stage currentStage = (Stage) loginAnchorPane.getScene().getWindow();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
+            stage.setMaximized(true);
             stage.show();
             currentStage.close();
-
+            
         } catch (IOException ex) {
             ex.getMessage();
         }
-
+        
     }
 }
