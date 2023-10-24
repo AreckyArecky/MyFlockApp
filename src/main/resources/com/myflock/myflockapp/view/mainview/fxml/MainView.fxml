@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane fx:id="mainViewAnchorPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
     <stylesheets>
@@ -28,8 +29,8 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-                <RowConstraints percentHeight="85.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="292.66668701171875" minHeight="10.0" prefHeight="18.33331298828125" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="80.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="5.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <HBox fx:id="menuPanel" alignment="CENTER_LEFT" spacing="50.0" GridPane.columnIndex="1">
@@ -86,13 +87,22 @@
                 </HBox>
                 <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <tabs>
-                        <Tab fx:id="welcomeTab" closable="false" text="Welcome">
+                        <Tab closable="false" text="Welcome">
                      <content>
-                        <TextFlow prefHeight="200.0" prefWidth="200.0">
+                        <Pane fx:id="welcomeTab" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MyFlock v0.1! You can manage your Members, Finances and Media from here.  " />
+                              <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MyFlock App!" wrappingWidth="233.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage members, finances and media with ease!" wrappingWidth="391.40625">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
                            </children>
-                        </TextFlow>
+                        </Pane>
                      </content>
                         </Tab>
                     </tabs>

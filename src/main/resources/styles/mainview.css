@@ -35,5 +35,8 @@
 }
 
 #welcomeTab {
-    -fx-background-image: url("img/welcomebg.jpg");
+    -fx-background-image: url("welcomebg.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
 }
