@@ -6,8 +6,6 @@ package com.myflock.myflockapp.view.loginview;
 
 import com.myflock.myflockapp.MyFlockApp;
 import com.myflock.myflockapp.auth.UserRepo;
-import com.myflock.myflockapp.view.LoginViewer;
-import com.myflock.myflockapp.view.MainView;
 import com.myflock.myflockapp.view.mainview.MainViewController;
 import java.io.IOException;
 import java.net.URL;
@@ -129,7 +127,7 @@ public class LoginViewController implements Initializable {
                 
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            Logger.getLogger(LoginViewer.class
+            Logger.getLogger(LoginViewController.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
         if (logged == true) {

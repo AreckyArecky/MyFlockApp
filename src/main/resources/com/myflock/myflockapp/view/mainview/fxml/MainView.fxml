@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -86,7 +85,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </HBox>
-                <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TabPane fx:id="mainTab" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <tabs>
                         <Tab closable="false" text="Welcome">
                      <content>
@@ -120,26 +119,7 @@
                         </Label>
                     </children>
                 </HBox>
-            <FlowPane fx:id="sidePanel" alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.rowIndex="1">
-               <children>
-                  <VBox fx:id="memPanel" alignment="TOP_CENTER" spacing="20.0" visible="false">
-                     <children>
-                        <Button fx:id="memAdd" mnemonicParsing="false" text="ADD" />
-                        <Button fx:id="memDel" mnemonicParsing="false" text="DELETE" />
-                        <Button fx:id="memEdit" mnemonicParsing="false" text="EDIT" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="finPanel" alignment="TOP_CENTER" spacing="20.0" visible="false">
-                     <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                     </children>
-                  </VBox>
-               </children>
-            </FlowPane>
+            <Pane fx:id="sidePanel" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </children>

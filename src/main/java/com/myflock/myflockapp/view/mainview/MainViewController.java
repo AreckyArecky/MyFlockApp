@@ -19,8 +19,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,6 +33,12 @@ import javafx.stage.StageStyle;
  * @author DevelopmentMPOS
  */
 public class MainViewController implements Initializable {
+
+    @FXML
+    private TabPane mainTab;
+
+    @FXML
+    private Pane sidePanel;
 
     @FXML
     private Label time;
@@ -52,7 +60,9 @@ public class MainViewController implements Initializable {
 
     @FXML
     private VBox finPanel;
-
+    
+    MediaController mediaController = new MediaController();
+//    String css = this.getClass().getResource("styles/mainview.css").toExternalForm();
     /**
      * Initializes the controller class.
      */
@@ -96,8 +106,13 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void initMembers() {
-        finPanel.setVisible(false);
-        memPanel.setVisible(true);
+
+        
+        if (!mediaController.isActive()) {
+            mediaController.init(sidePanel, mainTab);
+            mainTab.getSelectionModel().select(1);
+        }
+//        mainViewAnchorPane.getScene().getStylesheets().add(css);
 
     }
 
