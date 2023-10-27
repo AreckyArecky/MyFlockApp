@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -42,6 +43,15 @@ public class MainViewController implements Initializable {
 
     @FXML
     private Button logBtn;
+
+    @FXML
+    private Button members;
+
+    @FXML
+    private VBox memPanel;
+
+    @FXML
+    private VBox finPanel;
 
     /**
      * Initializes the controller class.
@@ -81,6 +91,20 @@ public class MainViewController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+
+    }
+
+    @FXML
+    public void initMembers() {
+        finPanel.setVisible(false);
+        memPanel.setVisible(true);
+
+    }
+
+    @FXML
+    public void initFinances() {
+        memPanel.setVisible(false);
+        finPanel.setVisible(true);
 
     }
 

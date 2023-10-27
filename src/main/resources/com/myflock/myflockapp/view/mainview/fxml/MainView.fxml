@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -35,12 +36,12 @@
             <children>
                 <HBox fx:id="menuPanel" alignment="CENTER_LEFT" spacing="50.0" GridPane.columnIndex="1">
                     <children>
-                        <Button fx:id="memBtn" mnemonicParsing="false" prefWidth="110.0" text="MEMBERS" HBox.hgrow="NEVER">
+                        <Button fx:id="memBtn" mnemonicParsing="false" onAction="#initMembers" prefWidth="110.0" text="MEMBERS" HBox.hgrow="NEVER">
                             <padding>
                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="finBtn" mnemonicParsing="false" prefWidth="110.0" text="FINANCES" HBox.hgrow="NEVER">
+                        <Button fx:id="finBtn" mnemonicParsing="false" onAction="#initFinances" prefWidth="110.0" text="FINANCES" HBox.hgrow="NEVER">
                             <padding>
                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                             </padding>
@@ -119,6 +120,26 @@
                         </Label>
                     </children>
                 </HBox>
+            <FlowPane fx:id="sidePanel" alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.rowIndex="1">
+               <children>
+                  <VBox fx:id="memPanel" alignment="TOP_CENTER" spacing="20.0" visible="false">
+                     <children>
+                        <Button fx:id="memAdd" mnemonicParsing="false" text="ADD" />
+                        <Button fx:id="memDel" mnemonicParsing="false" text="DELETE" />
+                        <Button fx:id="memEdit" mnemonicParsing="false" text="EDIT" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="finPanel" alignment="TOP_CENTER" spacing="20.0" visible="false">
+                     <children>
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
+                     </children>
+                  </VBox>
+               </children>
+            </FlowPane>
             </children>
         </GridPane>
     </children>

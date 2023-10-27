@@ -27,16 +27,20 @@
 }
 
 #usrPanel {
-    -fx-background-color: #e6ebf1;
+    -fx-background-color: #c5cad1;
 }
 
 #menuPanel {
     -fx-background-color: #e6ebf1;
 }
 
+#sidePanel {
+    -fx-background-color: #e6ebf1;
+}
+
 #welcomeTab {
     -fx-background-image: url("welcomebg.jpg");
-    -fx-background-repeat: stretch;   
+    -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
 }
