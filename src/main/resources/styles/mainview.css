@@ -45,11 +45,11 @@
     -fx-background-position: center center;
 }
 
-#sideMenu {
-    -fx-margin-top: 20px;
-    -fx-spacing: 20px;
+#sidePanel {
+    
+    -fx-spacing: 40px;
     -fx-alignment:center;
 }
-#sideMenu.button{
+#sidePanel .button{
     -fx-pref-width: 100;
 }

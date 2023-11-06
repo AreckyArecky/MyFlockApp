@@ -38,7 +38,7 @@ public class MainViewController implements Initializable {
     private TabPane mainTab;
 
     @FXML
-    private Pane sidePanel;
+    private VBox sidePanel;
 
     @FXML
     private Label time;

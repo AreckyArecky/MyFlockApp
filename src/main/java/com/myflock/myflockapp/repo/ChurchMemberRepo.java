@@ -9,6 +9,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import com.myflock.myflockapp.entity.ChurchMember;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
+import java.util.Collection;
 
 /**
  *
@@ -85,4 +87,9 @@ public class ChurchMemberRepo {
         em.remove(member);
         trans.commit();
     }
+    
+    public Collection<ChurchMember> getAllMembers() {
+    Query query = em.createQuery("SELECT m FROM ChurchMember m");
+    return (Collection<ChurchMember>) query.getResultList();
+  }
 }

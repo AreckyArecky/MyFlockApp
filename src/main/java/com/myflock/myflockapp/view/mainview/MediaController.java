@@ -4,12 +4,16 @@
  */
 package com.myflock.myflockapp.view.mainview;
 
+import com.myflock.myflockapp.entity.ChurchMember;
+import com.myflock.myflockapp.repo.ChurchMemberRepo;
+import java.util.Collection;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 
@@ -19,7 +23,6 @@ import javafx.scene.layout.Pane;
  */
 public class MediaController {
 
-    private VBox menu;
     private Button add;
     private Button delete;
     private Button edit;
@@ -28,7 +31,7 @@ public class MediaController {
     private Boolean isActive;
 
     public MediaController() {
-        menu = new VBox();
+
         add = new Button("ADD");
         delete = new Button("DELETE");
         edit = new Button("EDIT");
@@ -37,42 +40,51 @@ public class MediaController {
         isActive = false;
     }
 
-    public void init(Pane sidePanel, TabPane mainTab) {
-        
+    public void init(VBox sidePanel, TabPane mainTab) {
+
         buildLayout();
-        sidePanel.getChildren().add(menu);
+        sidePanel.getChildren().addAll(add, delete, edit);
 
         mainTab.getTabs().add(memTab);
-        
+
         isActive = true;
 
     }
-    
-    public boolean isActive(){
+
+    public boolean isActive() {
         return isActive;
     }
-    
-    public void buildLayout(){
-        menu.getChildren().addAll(add, delete, edit);
-        menu.setId("sideMenu");
-        
-        
+
+    public void buildLayout() {
+
         buildTable();
         memTab.setContent(memList);
         memTab.setClosable(true);
-        
+
     }
-    public void buildTable(){
-        TableColumn firstNameCol = new TableColumn("First Name");
-        TableColumn lastNameCol = new TableColumn("Last Name");
-        TableColumn ageCol = new TableColumn("Age");
-        TableColumn isMemberCol = new TableColumn("Membership");
-        TableColumn serviceCol = new TableColumn("Service");
-        TableColumn phoneCol = new TableColumn("Phone number");
+
+    public void buildTable() {
+        TableColumn<ChurchMember, String> firstNameCol = new TableColumn("First Name");
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn<ChurchMember, String> lastNameCol = new TableColumn("Last Name");
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("secondName"));
+        TableColumn<ChurchMember, String> ageCol = new TableColumn("Age");
+        ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+        TableColumn<ChurchMember, String> isMemberCol = new TableColumn("Membership");
+        isMemberCol.setCellValueFactory(new PropertyValueFactory<>("isMember"));
+        TableColumn<ChurchMember, String> serviceCol = new TableColumn("Service");
+        serviceCol.setCellValueFactory(new PropertyValueFactory<>("service"));
+        TableColumn<ChurchMember, String> phoneCol = new TableColumn("Phone number");
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
         memList.getColumns().addAll(firstNameCol, lastNameCol, ageCol, isMemberCol, serviceCol, phoneCol);
-    }
-    public void getData(){
-//        memList.get
+        
+        memList.setFixedCellSize(30);
+        ChurchMemberRepo memRepo = new ChurchMemberRepo();
+        Collection memListData = memRepo.getAllMembers();
+
+        memListData.forEach(a -> memList.getItems().add(a));
+
     }
 
 }

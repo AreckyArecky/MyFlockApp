@@ -75,7 +75,7 @@ public class ChurchMember {
         this.age = age;
     }
 
-    public boolean isMember() {
+    public boolean getIsMember() {
         return isMember;
     }
 
