@@ -36,12 +36,6 @@ public class MyFlockApp extends Application {
 
     }
 
-    public static void main(String[] args) {
-        ChurchMemberRepo memberRepo = new ChurchMemberRepo();
-        memberRepo.createMember("Arkadiusz", "Kowalski", 20);
-       
-        
-        launch(args);
-    }
+    
 
 }
