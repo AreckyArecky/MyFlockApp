@@ -42,73 +42,73 @@ import javafx.stage.StageStyle;
  * @author DevelopmentMPOS
  */
 public class MainViewController implements Initializable {
-    
+
     @FXML
     private TabPane mainTab;
-    
+
     @FXML
     private Tab welcomeTab;
-    
+
     @FXML
     private Tab memTab;
-    
+
     @FXML
     private Tab finTab;
-    
+
     @FXML
     private Tab medTab;
-    
+
     @FXML
     private VBox sidePanel;
-    
+
     @FXML
     private Label time;
-    
+
     @FXML
     private Label userLabel;
-    
+
     @FXML
     private AnchorPane mainViewAnchorPane;
-    
+
     @FXML
     private Button logBtn;
-    
+
     @FXML
     private Button members;
-    
+
     @FXML
     private VBox memPanel;
-    
+
     @FXML
     private VBox finPanel;
-    
+
     @FXML
     private TableView memTable;
-    
+
     @FXML
     private TextField phoneNum;
-    
+
     @FXML
     private TextField firstName;
-    
+
     @FXML
     private TextField lastName;
-    
+
     @FXML
     private TextField age;
-    
+
     @FXML
     private TextField service;
-    
+
     @FXML
     private RadioButton yesMem;
-    
+
     @FXML
     private RadioButton noMem;
-    
+
     @FXML
     @Override
-    
+
     public void initialize(URL url, ResourceBundle rb) {
 
         // DISPLAY LOGGED USER
@@ -120,10 +120,10 @@ public class MainViewController implements Initializable {
         // SHOW ONLY 'WELCOME' TAB
         clearTabs();
     }
-    
+
     @FXML
     public void logout() {
-        
+
         try {
             URL fxmlResource = LoginViewController.class
                     .getResource("fxml/LoginView.fxml");
@@ -134,13 +134,13 @@ public class MainViewController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.show();
             currentStage.close();
-            
+
         } catch (IOException ex) {
             ex.getMessage();
         }
-        
+
     }
-    
+
     @FXML
     public void initMembers() {
         clearTabs();
@@ -163,37 +163,39 @@ public class MainViewController implements Initializable {
         clearTabs();
         mainTab.getTabs().add(finTab);
         mainTab.getSelectionModel().select(finTab);
-        
+
     }
-    
+
     @FXML
     public void initMedia() {
         clearTabs();
         mainTab.getTabs().add(medTab);
         mainTab.getSelectionModel().select(medTab);
     }
-    
+
     @FXML
     public void clearTabs() {
-        
+
         mainTab.getTabs().clear();
         mainTab.getTabs().add(welcomeTab);
-        
+
     }
-    
+
     @FXML
     public void addLocalTime() {
         AnimationTimer timer = new AnimationTimer() {
             @Override
-            
+
             public void handle(long now) {
                 time.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             }
         };
         timer.start();
     }
-    
+
     public void buildTable() {
+        TableColumn<ChurchMember, String> idCol = new TableColumn("ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn<ChurchMember, String> firstNameCol = new TableColumn("First Name");
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         firstNameCol.setMinWidth(120);
@@ -209,32 +211,44 @@ public class MainViewController implements Initializable {
         TableColumn<ChurchMember, String> phoneCol = new TableColumn("Phone number");
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         phoneCol.setMinWidth(120);
-        
-        memTable.getColumns().addAll(firstNameCol, lastNameCol, ageCol, isMemberCol, serviceCol, phoneCol);
-        
+
+        memTable.getColumns().addAll(idCol, firstNameCol, lastNameCol, ageCol, isMemberCol, serviceCol, phoneCol);
+
         memTable.setFixedCellSize(30);
-        
+
         populateTable();
     }
-    
+
     public void populateTable() {
         memTable.getItems().clear();
         ChurchMemberRepo memRepo = new ChurchMemberRepo();
         Collection memListData = memRepo.getAllMembers();
-        
+
         memListData.forEach(a -> memTable.getItems().add(a));
-        
+
     }
-    
-    @FXML
+
     public void addMemberAction() {
         ChurchMemberRepo memRepo = new ChurchMemberRepo();
         memRepo.createMember(firstName.getText(), lastName.getText(), Integer.valueOf(age.getText()));
         populateTable();
-        
+
         memTable.scrollTo(memTable.getItems().size());
         memTable.getSelectionModel().select(memTable.getItems().size());
-        
+
     }
-    
+
+    public void deleteMemberAction() {
+        ChurchMemberRepo memRepo = new ChurchMemberRepo();
+        ChurchMember selected = (ChurchMember) memTable.getSelectionModel().getSelectedItem();
+        int selectedID = selected.getId();
+
+        if (selected != null) {
+            ChurchMember memToDelete = memRepo.findById(selectedID);
+            memRepo.deleteMember(memToDelete);
+            populateTable();
+        }
+
+    }
+
 }

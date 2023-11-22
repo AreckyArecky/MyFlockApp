@@ -6,9 +6,9 @@
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://sql11.freesqldatabase.com:3306/sql11662071"/>
-      <property name="javax.persistence.jdbc.user" value="sql11662071"/>
-      <property name="javax.persistence.jdbc.password" value="passpass123"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mychurchdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="admin123"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
@@ -21,9 +21,9 @@
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://sql11.freesqldatabase.com:3306/sql11662071"/>
-      <property name="javax.persistence.jdbc.user" value="sql11662071"/>
-      <property name="javax.persistence.jdbc.password" value="passpass123"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/admindb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="admin123"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>

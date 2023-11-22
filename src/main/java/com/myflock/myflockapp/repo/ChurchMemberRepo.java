@@ -87,9 +87,9 @@ public class ChurchMemberRepo {
         em.remove(member);
         trans.commit();
     }
-    
+
     public Collection<ChurchMember> getAllMembers() {
-    Query query = em.createQuery("SELECT m FROM ChurchMember m");
-    return (Collection<ChurchMember>) query.getResultList();
-  }
+        Query query = em.createQuery("SELECT m FROM ChurchMember m");
+        return (Collection<ChurchMember>) query.getResultList();
+    }
 }
