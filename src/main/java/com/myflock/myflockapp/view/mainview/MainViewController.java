@@ -30,16 +30,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
  *
- * @author DevelopmentMPOS
+ * @author Areckyy_
  */
 public class MainViewController implements Initializable {
 
@@ -69,18 +75,6 @@ public class MainViewController implements Initializable {
 
     @FXML
     private AnchorPane mainViewAnchorPane;
-
-    @FXML
-    private Button logBtn;
-
-    @FXML
-    private Button members;
-
-    @FXML
-    private VBox memPanel;
-
-    @FXML
-    private VBox finPanel;
 
     @FXML
     private TableView memTable;
@@ -119,6 +113,9 @@ public class MainViewController implements Initializable {
 
         // SHOW ONLY 'WELCOME' TAB
         clearTabs();
+
+        buildTable();
+
     }
 
     @FXML
@@ -146,17 +143,8 @@ public class MainViewController implements Initializable {
         clearTabs();
         mainTab.getTabs().add(memTab);
         mainTab.getSelectionModel().select(memTab);
-        buildTable();
+
     }
-//
-//    @FXML
-//    public void updateMembers() {
-//        
-//        mediaController.updateTable(mainTab);
-//        mainTab.getSelectionModel().select(1);
-//
-//    }
-//        mainViewAnchorPane.getScene().getStylesheets().add(css);
 
     @FXML
     public void initFinances() {
@@ -229,13 +217,26 @@ public class MainViewController implements Initializable {
     }
 
     public void addMemberAction() {
-        ChurchMemberRepo memRepo = new ChurchMemberRepo();
-        memRepo.createMember(firstName.getText(), lastName.getText(), Integer.valueOf(age.getText()));
-        populateTable();
 
-        memTable.scrollTo(memTable.getItems().size());
-        memTable.getSelectionModel().select(memTable.getItems().size());
+        if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || age.getText().isEmpty()) {
+            Border border = new Border(new BorderStroke(Color.RED,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+            this.firstName.setBorder(border);
+            this.lastName.setBorder(border);
+            this.age.setBorder(border);
+        } else {
+            String firstName = this.firstName.getText();
+            String lastName = this.lastName.getText();
+            int age = Integer.parseInt(this.age.getText());
+            ChurchMemberRepo memRepo = new ChurchMemberRepo();
+            memRepo.createMember(firstName, lastName, age);
+            populateTable();
 
+            memTable.scrollTo(memTable.getItems().size());
+            memTable.getSelectionModel().select(memTable.getItems().size());
+
+            clearLabels();
+        }
     }
 
     public void deleteMemberAction() {
@@ -249,6 +250,28 @@ public class MainViewController implements Initializable {
             populateTable();
         }
 
+    }
+
+    @FXML
+    public void clearLabels() {
+        firstName.clear();
+        firstName.setBorder(Border.EMPTY);
+        lastName.clear();
+        lastName.setBorder(Border.EMPTY);
+        age.clear();
+        age.setBorder(Border.EMPTY);
+        phoneNum.clear();
+        service.clear();
+    }
+
+    public boolean isMemberResult() {
+        boolean isMember = false;
+        if (yesMem.isArmed()) {
+            isMember = true;
+        } else if (noMem.isArmed()) {
+            isMember = false;
+        }
+        return isMember;
     }
 
 }
