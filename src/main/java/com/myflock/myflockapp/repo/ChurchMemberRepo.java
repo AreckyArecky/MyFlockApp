@@ -65,6 +65,17 @@ public class ChurchMemberRepo {
         trans.commit();
     }
 
+    public void createMember(String firstName, String secondName, int age, boolean isMember, int phoneNumber) {
+        ChurchMember newMember = new ChurchMember(firstName, secondName, age, isMember, phoneNumber);
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        em.persist(newMember);
+
+        System.out.println(" New Guest ID " + newMember.getId());
+
+        trans.commit();
+    }
+
     public ChurchMember findById(int id) {
         em.clear();
         return em.find(ChurchMember.class, id);
@@ -114,6 +125,19 @@ public class ChurchMemberRepo {
         trans.commit();
     }
 
+    public void updateMember(ChurchMember member, String firstName, String secondName, int age, boolean isMember, String service, int phoneNumber) {
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        member.setFirstName(firstName);
+        member.setSecondName(secondName);
+        member.setAge(age);
+        member.setIsMember(isMember);
+        member.setService(service);
+        member.setPhoneNumber(phoneNumber);
+        trans.commit();
+
+    }
+
     public void deleteMember(ChurchMember member) {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
@@ -125,6 +149,5 @@ public class ChurchMemberRepo {
         Query query = em.createQuery("SELECT m FROM ChurchMember m");
         return (Collection<ChurchMember>) query.getResultList();
     }
-    
-    
+
 }

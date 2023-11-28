@@ -47,19 +47,24 @@ public class ChurchMember {
     }
 
     public ChurchMember() {
-    };
+    }
 
-    
-    public ChurchMember(String firstName, String secondName, int age, boolean isMember, String service) {
-        this(firstName, secondName, age, isMember, service, 000000000);
+    ;
+
+    public ChurchMember(String firstName, String secondName, int age) {
+        this(firstName, secondName, age, true, "no service", 000000000);
     }
 
     public ChurchMember(String firstName, String secondName, int age, boolean isMember) {
         this(firstName, secondName, age, isMember, "no service", 000000000);
     }
 
-    public ChurchMember(String firstName, String secondName, int age) {
-        this(firstName, secondName, age, true, "no service", 000000000);
+    public ChurchMember(String firstName, String secondName, int age, boolean isMember, String service) {
+        this(firstName, secondName, age, isMember, service, 000000000);
+    }
+    
+    public ChurchMember(String firstName, String secondName, int age, boolean isMember, int phoneNumber) {
+        this(firstName, secondName, age, isMember, "no service", phoneNumber);
     }
 
     public int getId() {

@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainViewAnchorPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
+<AnchorPane fx:id="mainViewAnchorPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.mainview.MainViewController">
     <stylesheets>
         <URL value="@/styles/mainview.css" />
     </stylesheets>
@@ -125,9 +125,9 @@
                                     <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefWidth="1072.0" spacing="20.0">
                                        <children>
                                           <Label prefHeight="34.0" prefWidth="68.0" text="ADD NEW MEMBER:" textAlignment="RIGHT" wrapText="true" />
-                                          <TextField fx:id="firstName" prefWidth="120.0" promptText="First name" />
-                                          <TextField fx:id="lastName" prefWidth="120.0" promptText="Last name" />
-                                          <TextField fx:id="age" prefWidth="120.0" promptText="Age" />
+                                          <TextField fx:id="firstName" prefWidth="120.0" promptText="First name*" />
+                                          <TextField fx:id="lastName" prefWidth="120.0" promptText="Last name*" />
+                                          <TextField fx:id="age" prefWidth="120.0" promptText="Age*" />
                                           <Label text="Member?" />
                                           <RadioButton fx:id="yesMem" mnemonicParsing="false" text="Yes">
                                              <toggleGroup>
@@ -141,6 +141,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </HBox>
+                                    <Label fx:id="memMsg" text="* Fields are required." />
                                     <TableView fx:id="memTable" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>

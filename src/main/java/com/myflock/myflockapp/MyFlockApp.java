@@ -1,16 +1,11 @@
 package com.myflock.myflockapp;
-
 import com.myflock.myflockapp.view.loginview.LoginViewController;
-import com.myflock.myflockapp.repo.ChurchMemberRepo;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.List;
 import javafx.scene.Parent;
 import javafx.stage.StageStyle;
 
@@ -35,7 +30,5 @@ public class MyFlockApp extends Application {
         }
 
     }
-
-    
 
 }

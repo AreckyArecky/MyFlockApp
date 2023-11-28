@@ -101,8 +101,10 @@ public class MainViewController implements Initializable {
     private RadioButton noMem;
 
     @FXML
-    @Override
+    private Label memMsg;
 
+    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         // DISPLAY LOGGED USER
@@ -217,24 +219,73 @@ public class MainViewController implements Initializable {
     }
 
     public void addMemberAction() {
+        Border border = new Border(new BorderStroke(Color.RED,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        StringBuilder memMsgTxt = new StringBuilder();
+        memMsgTxt.append("You must enter");
+        if (firstName.getText().isEmpty()) {
+            clearBorders();
+            firstName.setBorder(border);
+            memMsgTxt.append("first name.");
+            memMsg.setText(memMsgTxt.toString());
 
-        if (firstName.getText().isEmpty() || lastName.getText().isEmpty() || age.getText().isEmpty()) {
-            Border border = new Border(new BorderStroke(Color.RED,
-                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
-            this.firstName.setBorder(border);
-            this.lastName.setBorder(border);
-            this.age.setBorder(border);
+        } else if (lastName.getText().isEmpty()) {
+            clearBorders();
+            memMsgTxt.append(" last name.");
+            lastName.setBorder(border);
+            memMsg.setText(memMsgTxt.toString());
+        } else if (age.getText().isEmpty()) {
+            clearBorders();
+            memMsgTxt.append(" age.");
+            age.setBorder(border);
+            memMsg.setText(memMsgTxt.toString());
         } else {
-            String firstName = this.firstName.getText();
-            String lastName = this.lastName.getText();
-            int age = Integer.parseInt(this.age.getText());
             ChurchMemberRepo memRepo = new ChurchMemberRepo();
-            memRepo.createMember(firstName, lastName, age);
-            populateTable();
+            if (isMemberResult() == true && service.getText().isEmpty() && phoneNum.getText().isEmpty()) {
+                String firstName = this.firstName.getText();
+                String lastName = this.lastName.getText();
+                int passAge = Integer.parseInt(this.age.getText());
+                System.out.println("Nic nie zaznaczone?" + isMemberResult());
+
+                memRepo.createMember(firstName, lastName, passAge);
+            } else if (service.getText().isEmpty() && phoneNum.getText().isEmpty()) {
+                String firstName = this.firstName.getText();
+                String lastName = this.lastName.getText();
+                int passAge = Integer.parseInt(this.age.getText());
+                boolean isMember = isMemberResult();
+
+                memRepo.createMember(firstName, lastName, passAge, isMember);
+                System.out.println("Zaznaczone false." + isMember);
+                memRepo.getAllMembers().toString();
+            } else if (phoneNum.getText().isEmpty()) {
+                String firstName = this.firstName.getText();
+                String lastName = this.lastName.getText();
+                int passAge = Integer.parseInt(this.age.getText());
+                boolean isMember = isMemberResult();
+                String service = this.service.getText();
+                memRepo.createMember(firstName, lastName, passAge, isMember, service);
+            } else if (service.getText().isEmpty()) {
+                String firstName = this.firstName.getText();
+                String lastName = this.lastName.getText();
+                int passAge = Integer.parseInt(this.age.getText());
+                boolean isMember = isMemberResult();
+                int phoneNum = Integer.parseInt(this.phoneNum.getText());
+                memRepo.createMember(firstName, lastName, passAge, isMember, phoneNum);
+            } else {
+                String firstName = this.firstName.getText();
+                String lastName = this.lastName.getText();
+                int passAge = Integer.parseInt(this.age.getText());
+                boolean isMember = isMemberResult();
+                String service = this.service.getText();
+                int phoneNum = Integer.parseInt(this.phoneNum.getText());
+                memRepo.createMember(firstName, lastName, passAge, isMember, service, phoneNum);
+            }
 
             memTable.scrollTo(memTable.getItems().size());
             memTable.getSelectionModel().select(memTable.getItems().size());
 
+            populateTable();
+            memMsg.setText("* Fields are required.");
             clearLabels();
         }
     }
@@ -251,24 +302,41 @@ public class MainViewController implements Initializable {
         }
 
     }
+    
+//    public void editMemberAction(){
+//        ChurchMemberRepo memRepo = new ChurchMemberRepo();
+//        ChurchMember selected = (ChurchMember) memTable.getSelectionModel().getSelectedItem();
+//        memTable.getSelectionModel().
+//        int selectedID = selected.getId();
+//
+//        if (selected != null) {
+//            ChurchMember memToUpdate = memRepo.findById(selectedID);
+//            memRepo.deleteMember(memToDelete);
+//            populateTable();
+//        }
+//    }
 
     @FXML
     public void clearLabels() {
         firstName.clear();
-        firstName.setBorder(Border.EMPTY);
         lastName.clear();
-        lastName.setBorder(Border.EMPTY);
         age.clear();
-        age.setBorder(Border.EMPTY);
+        yesMem.setSelected(false);
+        noMem.setSelected(false);
         phoneNum.clear();
         service.clear();
+        clearBorders();
+    }
+
+    public void clearBorders() {
+        firstName.setBorder(Border.EMPTY);
+        lastName.setBorder(Border.EMPTY);
+        age.setBorder(Border.EMPTY);
     }
 
     public boolean isMemberResult() {
-        boolean isMember = false;
-        if (yesMem.isArmed()) {
-            isMember = true;
-        } else if (noMem.isArmed()) {
+        boolean isMember = true;
+        if (noMem.isSelected()) {
             isMember = false;
         }
         return isMember;
