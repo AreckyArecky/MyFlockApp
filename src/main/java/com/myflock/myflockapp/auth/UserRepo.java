@@ -10,9 +10,12 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Collection;
 import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +28,7 @@ public class UserRepo {
 
     public void createUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
-            User newUser = new User(username, password);
+            User newUser = new User(username, password, false);
             EntityTransaction trans = emAuth.getTransaction();
             trans.begin();
             emAuth.persist(newUser);
@@ -64,12 +67,41 @@ public class UserRepo {
             User result = resultList.get(0);
             trans.commit();
             UserLogged.getInstance(result);
-            
+
             return PassHash.validatePassword(password, result.getPassword());
         } else {
             trans.rollback();
             return false;
 
         }
+
+    }
+
+    public void updateUser(User user, String username, String password, boolean isAdmin) {
+        try {
+            EntityTransaction trans = emAuth.getTransaction();
+            trans.begin();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setIsAdmin(isAdmin);
+            trans.commit();
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateUserNoPass(User user, String username, boolean isAdmin) {
+
+        EntityTransaction trans = emAuth.getTransaction();
+        trans.begin();
+        user.setUsername(username);
+        user.setIsAdmin(isAdmin);
+        trans.commit();
+
+    }
+
+    public Collection<User> getAllUsers() {
+        Query query = emAuth.createQuery("SELECT u FROM User u");
+        return (Collection<User>) query.getResultList();
     }
 }

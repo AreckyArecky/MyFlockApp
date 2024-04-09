@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.userpanelview.UserPanelViewController">
+     <stylesheets>
+        <URL value="@/styles/panelview.css" />
+    </stylesheets>
+    <children>
+        <VBox prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Button id="addBtn" fx:id="addBtn" mnemonicParsing="false" onAction="#addUser" prefWidth="80.0" text="ADD" />
+                        <Button mnemonicParsing="false" onAction="#editUser" prefWidth="80.0" text="EDIT" />
+                        <Button mnemonicParsing="false" onAction="#deleteUser" prefWidth="80.0" text="DELETE" />
+                    </items>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ToolBar>
+                <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="600.0" spacing="10.0">
+                    <children>
+                        <Label text="Username" />
+                        <TextField fx:id="usernameField" promptText="Enter username" />
+                        <Label text="Password" />
+                        <PasswordField fx:id="passwordField" promptText="Enter password" />
+                  <Label text="Admin?" />
+                  <RadioButton fx:id="yesAd" mnemonicParsing="false" text="Yes">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="isAdmin" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="noAd" mnemonicParsing="false" text="No" toggleGroup="$isAdmin" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </HBox>
+            <HBox fx:id="editPopup" spacing="5.0" visible="false">
+               <children>
+                  <Button fx:id="editSave" mnemonicParsing="false" onAction="#editSave" prefWidth="70.0" text="SAVE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="editCancel" mnemonicParsing="false" onAction="#editCancel" prefWidth="70.0" text="CANCEL">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+                <Pane prefHeight="31.0" prefWidth="600.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="6.0" text="USERS">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <TableView fx:id="usrTable" prefHeight="200.0" prefWidth="200.0" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

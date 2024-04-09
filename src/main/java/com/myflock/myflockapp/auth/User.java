@@ -27,9 +27,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public User(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    @Column(name = "isAdmin")
+    private boolean isAdmin;
+
+    public User(String username, String password, boolean isAdmin) throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.username = username;
         this.password = PassHash.createHash(password);
+        this.isAdmin = false;
     }
 
     public User() {
@@ -52,12 +56,21 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPassword() {    
         return password;
     }
 
     public void setPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.password = PassHash.createHash(password);
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+
     }
 
     @Override

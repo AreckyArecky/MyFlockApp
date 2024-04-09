@@ -76,7 +76,7 @@
                                 <Label fx:id="userLabel" text="&quot; &quot;" />
                             </children>
                         </VBox>
-                        <Button fx:id="usrBtn" mnemonicParsing="false" text="USER PANEL" textAlignment="CENTER" wrapText="true" HBox.hgrow="NEVER">
+                        <Button fx:id="usrBtn" onAction="#openPnl" mnemonicParsing="false" text="USER PANEL" textAlignment="CENTER" wrapText="true" HBox.hgrow="NEVER">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -165,6 +165,7 @@
                   </Tab>
                   <Tab fx:id="finTab" closable="false" text="FINANCES">
                     <content>
+                        <fx:include source="/com/myflock/myflockapp/view/finances/fxml/FinancesView.fxml"/>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>

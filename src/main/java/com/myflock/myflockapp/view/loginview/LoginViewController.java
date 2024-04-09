@@ -155,12 +155,19 @@ public class LoginViewController implements Initializable {
     public void switchSceneToMain() {
         
         try {
+            System.out.println("CLOSING SCENE");
             URL fxmlResource = MainViewController.class
                     .getResource("fxml/MainView.fxml");
-            Parent parent = FXMLLoader.load(fxmlResource);
+            System.out.println("GOT RESOURCE");
+//            Parent parent = ;
+            System.out.println("GOT PARENT");
             Stage currentStage = (Stage) loginAnchorPane.getScene().getWindow();
+            System.out.println("GOT CURRENT STAGE");
+            
             Stage stage = new Stage();
-            stage.setScene(new Scene(parent));
+            System.out.println("CREATE NEW STAGE");
+            stage.setScene(new Scene(FXMLLoader.load(fxmlResource)));
+            System.out.println("SET NEW SCENE");
             stage.setMaximized(true);
             stage.show();
             currentStage.close();

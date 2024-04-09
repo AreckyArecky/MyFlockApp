@@ -24,4 +24,8 @@ public class UserLogged {
     public static String getUserName() {
         return UserLogged.user.getUsername();
     }
+
+    public static void logout() {
+        logged = null;
+    }
 }
