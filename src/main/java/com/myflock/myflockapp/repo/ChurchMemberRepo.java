@@ -26,9 +26,6 @@ public class ChurchMemberRepo {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         em.persist(newMember);
-
-        System.out.println(" New Guest ID " + newMember.getId());
-
         trans.commit();
     }
 
@@ -37,9 +34,6 @@ public class ChurchMemberRepo {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         em.persist(newMember);
-
-        System.out.println(" New Guest ID " + newMember.getId());
-
         trans.commit();
     }
 
@@ -48,9 +42,6 @@ public class ChurchMemberRepo {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         em.persist(newMember);
-
-        System.out.println(" New Guest ID " + newMember.getId());
-
         trans.commit();
     }
 
@@ -59,9 +50,6 @@ public class ChurchMemberRepo {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         em.persist(newMember);
-
-        System.out.println(" New Guest ID " + newMember.getId());
-
         trans.commit();
     }
 
@@ -70,9 +58,6 @@ public class ChurchMemberRepo {
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         em.persist(newMember);
-
-        System.out.println(" New Guest ID " + newMember.getId());
-
         trans.commit();
     }
 

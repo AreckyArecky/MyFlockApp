@@ -4,7 +4,13 @@
  */
 package com.myflock.myflockapp.view.financesview;
 
+import com.myflock.myflockapp.repo.TransactionEntryRepo;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
@@ -15,12 +21,16 @@ import javafx.fxml.Initializable;
  */
 public class FinancesViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
+    public void show() {
+        TransactionEntryRepo transEntryRepo = new TransactionEntryRepo();
+        transEntryRepo.findBankIncomeEntryByYear(2024);
+      
+
+    }
+
 }
