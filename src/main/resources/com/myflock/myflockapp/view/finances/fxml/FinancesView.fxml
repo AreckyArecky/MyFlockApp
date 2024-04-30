@@ -2,74 +2,132 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.financesview.FinancesViewController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.financesview.FinancesViewController">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="20.0">
             <children>
-                <Label prefHeight="33.0" prefWidth="181.0" text="CHOOSE DATE AND TYPE:">
+                <Label prefHeight="33.0" prefWidth="227.0" text="CHOOSE YEAR AND/OR MONTH:">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <ChoiceBox prefWidth="100.0" />
-                <ChoiceBox prefWidth="100.0" />
-                <ChoiceBox prefWidth="100.0" />
-                <Button fx:id="show" mnemonicParsing="false" onAction="#show" prefWidth="80.0" text="SHOW">
+                <ChoiceBox fx:id="yearPicker" prefWidth="100.0" />
+                <ChoiceBox fx:id="monthPicker" prefWidth="100.0" />
+            <VBox>
+               <children>
+                  <CheckBox fx:id="cashIncomeSelect" mnemonicParsing="false" text="Cash Income" />
+                  <CheckBox fx:id="cashOutcomeSelect" mnemonicParsing="false" text="Cash Outcome" />
+                  <CheckBox fx:id="bankIncomeSelect" mnemonicParsing="false" text="Bank Income" />
+                  <CheckBox fx:id="bankOutcomeSelect" mnemonicParsing="false" text="Bank Outcome" />
+               </children>
+            </VBox>
+                <Button fx:id="showBtn" mnemonicParsing="false" onAction="#show" prefWidth="80.0" text="SHOW">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
                 </Button>
             </children>
             <padding>
-                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </HBox>
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="681.0" prefWidth="1025.0">
-            <children>
-                <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label text="CASH">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
+      <ScrollPane hbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
+         <content>
+            <TilePane fx:id="tileTables" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefColumns="2" prefRows="2" prefTileHeight="500.0" prefTileWidth="600.0" vgap="20.0">
+               <children>
+                  <VBox fx:id="cashIncome" visible="false">
+                     <children>
+                        <Label text="CASH INCOME">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </Label>
-                        <HBox prefWidth="200.0">
-                            <children>
-                                <TableView />
-                                <TableView />
-                            </children>
-                        </HBox>
-                    </children>
-                    <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding>
-                </VBox>
-                <VBox alignment="TOP_CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label text="BANK ACCOUNT">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
+                        <TableView fx:id="cashIncomeTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Date" />
+                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
+                              <TableColumn prefWidth="75.0" text="Amount" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="cashOutcome" visible="false">
+                     <children>
+                        <Label text="CASH OUTCOME">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </Label>
-                        <HBox prefWidth="200.0">
-                            <children>
-                                <TableView />
-                                <TableView />
-                            </children>
-                        </HBox>
-                    </children>
-                    <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding>
-                </VBox>
-            </children>
-        </HBox>
+                        <TableView fx:id="cashOutcomeTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Date" />
+                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
+                              <TableColumn prefWidth="75.0" text="Amount" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="bankIncome" visible="false">
+                     <children>
+                        <Label text="BANK INCOME">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <TableView fx:id="bankIncomeTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Date" />
+                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
+                              <TableColumn prefWidth="75.0" text="Amount" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="bankOutcome" visible="false">
+                     <children>
+                        <Label text="BANK OUTCOME">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <TableView fx:id="bankOutcomeTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Date" />
+                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
+                              <TableColumn prefWidth="75.0" text="Amount" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TilePane>
+         </content>
+      </ScrollPane>
     </children>
 </VBox>

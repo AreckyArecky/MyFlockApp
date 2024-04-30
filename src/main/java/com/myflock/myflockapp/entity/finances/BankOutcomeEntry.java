@@ -13,6 +13,9 @@ import java.sql.Date;
  */
 @Entity
 public class BankOutcomeEntry extends TransactionEntry{
+    public BankOutcomeEntry() {
+        super();
+    }
     public BankOutcomeEntry(Date date, String description, Double amount) {
         super(date, description, amount);
     }

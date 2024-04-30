@@ -60,10 +60,6 @@ public class TransactionEntry {
         this.amount = amount;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Date: " + this.date + ", description: " + this.description + ", amount: " + this.amount;
-//    }
     @Override
     public String toString() {
         return "TransactionEntry{" + "date=" + date + ", description=" + description + ", amount=" + amount + '}';
