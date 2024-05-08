@@ -6,16 +6,15 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myflock.myflockapp.view.financesview.FinancesViewController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <HBox alignment="CENTER_LEFT" spacing="20.0" VBox.vgrow="ALWAYS">
             <children>
                 <Label prefHeight="33.0" prefWidth="227.0" text="CHOOSE YEAR AND/OR MONTH:">
                     <font>
@@ -42,81 +41,57 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </HBox>
-      <ScrollPane hbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
          <content>
-            <TilePane fx:id="tileTables" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefColumns="2" prefRows="2" prefTileHeight="500.0" prefTileWidth="600.0" vgap="20.0">
+            <FlowPane fx:id="flowTables" hgap="40.0" maxWidth="1.7976931348623157E308" rowValignment="TOP" vgap="40.0">
                <children>
-                  <VBox fx:id="cashIncome" visible="false">
+                  <VBox fx:id="cashIncome" alignment="CENTER_LEFT" visible="false">
                      <children>
                         <Label text="CASH INCOME">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="cashIncomeTable" VBox.vgrow="ALWAYS">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="Date" />
-                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Amount" />
-                           </columns>
-                        </TableView>
+                        <TableView fx:id="cashIncomeTable" minWidth="500.0" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="cashOutcome" visible="false">
+                  <VBox fx:id="cashOutcome" alignment="CENTER_LEFT" visible="false">
                      <children>
                         <Label text="CASH OUTCOME">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="cashOutcomeTable" VBox.vgrow="ALWAYS">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="Date" />
-                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Amount" />
-                           </columns>
-                        </TableView>
+                        <TableView fx:id="cashOutcomeTable" minWidth="500.0" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="bankIncome" visible="false">
+                  <VBox fx:id="bankIncome" alignment="CENTER_LEFT" visible="false">
                      <children>
                         <Label text="BANK INCOME">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="bankIncomeTable" VBox.vgrow="ALWAYS">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="Date" />
-                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Amount" />
-                           </columns>
-                        </TableView>
+                        <TableView fx:id="bankIncomeTable" minWidth="500.0" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="bankOutcome" visible="false">
+                  <VBox fx:id="bankOutcome" alignment="CENTER_LEFT" visible="false">
                      <children>
                         <Label text="BANK OUTCOME">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="bankOutcomeTable" VBox.vgrow="ALWAYS">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="Date" />
-                              <TableColumn maxWidth="200.0" prefWidth="200.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Amount" />
-                           </columns>
-                        </TableView>
+                        <TableView fx:id="bankOutcomeTable" minWidth="500.0" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -124,9 +99,9 @@
                   </VBox>
                </children>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
-            </TilePane>
+            </FlowPane>
          </content>
       </ScrollPane>
     </children>

@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.myflock.myflockapp.view.financesview;
 
+import com.myflock.myflockapp.entity.finances.BankIncomeEntry;
+import com.myflock.myflockapp.entity.finances.BankOutcomeEntry;
 import com.myflock.myflockapp.entity.finances.CashIncomeEntry;
+import com.myflock.myflockapp.entity.finances.CashOutcomeEntry;
 import com.myflock.myflockapp.entity.finances.MonthPicker;
 import com.myflock.myflockapp.entity.finances.TransactionEntry;
 import com.myflock.myflockapp.repo.TransactionEntryRepo;
+import com.myflock.myflockapp.view.PopupBuilder;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -54,7 +55,7 @@ public class FinancesViewController implements Initializable {
     private CheckBox bankOutcomeSelect;
 
     @FXML
-    private TilePane tileTables;
+    private FlowPane flowTables;
 
     @FXML
     private TableView cashIncomeTable;
@@ -82,14 +83,10 @@ public class FinancesViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tileTables.setPrefTileHeight(TextField.USE_COMPUTED_SIZE);
-        tileTables.setPrefTileWidth(TextField.USE_COMPUTED_SIZE);
-        tileTables.setMinWidth(TextField.USE_COMPUTED_SIZE);
-
         monthPicker.getItems().addAll(MonthPicker.values());
         monthPicker.getItems().add("YEARLY");
-        int from = 1980;
-        int to = 2050;
+        int from = 2000;
+        int to = 2030;
         List<Integer> years = new ArrayList<>();
         while (from <= to) {
             years.add(from++);
@@ -101,20 +98,23 @@ public class FinancesViewController implements Initializable {
     public void show() {
         clearTables();
         hideSections();
+
         if (cashIncomeSelect.isSelected()) {
             showCashIncome();
         }
-//        if (cashOutcomeSelect.isArmed()) {
+        if (cashOutcomeSelect.isSelected()) {
+            showCashOutcome();
+        }
+        if (bankIncomeSelect.isSelected()) {
+            showBankIncome();
+        }
+        if (bankOutcomeSelect.isSelected()) {
+            showBankOutcome();
+        }
+        if (noSelection()) {
+            PopupBuilder.buildInfoPopup("Choose a table type.");
+        }
 
-//            showCashOutcome();
-//        } else if (bankIncomeSelect.isArmed()) {
-//            showBankIncome();
-//        } else if (bankOutcomeSelect.isArmed()) {
-//            showBankOutcome();
-//        } else {
-//            noSelectionPopup();
-//        }
-//
     }
 
     public void clearTables() {
@@ -131,28 +131,32 @@ public class FinancesViewController implements Initializable {
         bankOutcome.setVisible(false);
     }
 
-    public void showCashIncome() {
-        cashIncome.setVisible(true);
-        createCashIncomeDataFromDate();
-        buildTable(cashIncomeTable, createCashIncomeDataFromDate());
-
+    public boolean noSelection() {
+        boolean noSelection = false;
+        if (!cashIncomeSelect.isSelected() && !cashOutcomeSelect.isSelected() && !bankIncomeSelect.isSelected() && !bankOutcomeSelect.isSelected()) {
+            noSelection = true;
+        }
+        return noSelection;
     }
 
-    public ObservableList<CashIncomeEntry> createCashIncomeDataFromDate() {
-        System.out.println(monthPicker.getValue());
-        ObservableList<CashIncomeEntry> data = FXCollections.observableArrayList();
-        TransactionEntryRepo repo = new TransactionEntryRepo();
-        Collection<CashIncomeEntry> fromRepo;
+    public void showCashIncome() {
+        cashIncome.setVisible(true);
+        buildTable(cashIncomeTable, createTableDataFromDate("CashIncome"));
+    }
 
-        if (monthPicker.getValue() == null || monthPicker.getValue().equals("YEARLY")) {
-            fromRepo = repo.findCashIncomeEntryByYear(Integer.parseInt(yearPicker.getValue().toString()));
-        } else {
-            fromRepo = repo.findCashIncomeEntryByYearAndMonth(Integer.parseInt(yearPicker.getValue().toString()), MonthPicker.getMonthNumberFromString(monthPicker.getValue().toString()));
-        }
-        if (!fromRepo.isEmpty()) {
-            fromRepo.forEach(e -> data.add(new CashIncomeEntry(e.getDate(), e.getDescription(), e.getAmount())));
-        }
-        return data;
+    public void showBankIncome() {
+        bankIncome.setVisible(true);
+        buildTable(bankIncomeTable, createTableDataFromDate("BankIncome"));
+    }
+
+    public void showCashOutcome() {
+        cashOutcome.setVisible(true);
+        buildTable(cashOutcomeTable, createTableDataFromDate("CashOutcome"));
+    }
+
+    public void showBankOutcome() {
+        bankOutcome.setVisible(true);
+        buildTable(bankOutcomeTable, createTableDataFromDate("BankOutcome"));
     }
 
     public void buildTable(TableView table, ObservableList data) {
@@ -169,5 +173,96 @@ public class FinancesViewController implements Initializable {
         table.getColumns().addAll(date, desc, amnt);
 
         table.setItems(data);
+        table.setPrefWidth(0.45 * flowTables.getWidth());
+        desc.setPrefWidth(0.65 * table.getWidth());
+        date.setPrefWidth(0.2 * table.getWidth());
+        amnt.setPrefWidth(0.1 * table.getWidth());
+
     }
+
+    public ObservableList<TransactionEntry> createTableDataFromDate(String type) {
+
+        ObservableList<TransactionEntry> data = FXCollections.observableArrayList();
+
+        switch (type) {
+            case "CashIncome":
+                createCashIncomeDataByDate(data);
+                break;
+            case "BankIncome":
+                createBankIncomeDataByDate(data);
+                break;
+            case "CashOutcome":
+                createCashOutcomeDataByDate(data);
+                break;
+            case "BankOutcome":
+                createBankOutcomeDataByDate(data);
+        }
+
+        return data;
+    }
+
+    public ObservableList<CashIncomeEntry> createCashIncomeDataByDate(ObservableList data) {
+
+        TransactionEntryRepo repo = new TransactionEntryRepo();
+        Collection<CashIncomeEntry> fromRepo;
+
+        if (monthPicker.getValue() == null || monthPicker.getValue().equals("YEARLY")) {
+            fromRepo = repo.findCashIncomeEntryByYear(Integer.parseInt(yearPicker.getValue().toString()));
+        } else {
+            fromRepo = repo.findCashIncomeEntryByYearAndMonth(Integer.parseInt(yearPicker.getValue().toString()), MonthPicker.getMonthNumberFromString(monthPicker.getValue().toString()));
+        }
+        if (!fromRepo.isEmpty()) {
+            fromRepo.forEach(e -> data.add(new CashIncomeEntry(e.getDate(), e.getDescription(), e.getAmount())));
+        }
+        return data;
+    }
+
+    public ObservableList<BankIncomeEntry> createBankIncomeDataByDate(ObservableList data) {
+
+        TransactionEntryRepo repo = new TransactionEntryRepo();
+        Collection<BankIncomeEntry> fromRepo;
+
+        if (monthPicker.getValue() == null || monthPicker.getValue().equals("YEARLY")) {
+            fromRepo = repo.findBankIncomeEntryByYear(Integer.parseInt(yearPicker.getValue().toString()));
+        } else {
+            fromRepo = repo.findBankIncomeEntryByYearAndMonth(Integer.parseInt(yearPicker.getValue().toString()), MonthPicker.getMonthNumberFromString(monthPicker.getValue().toString()));
+        }
+        if (!fromRepo.isEmpty()) {
+            fromRepo.forEach(e -> data.add(new BankIncomeEntry(e.getDate(), e.getDescription(), e.getAmount())));
+        }
+        return data;
+    }
+
+    public ObservableList<CashOutcomeEntry> createCashOutcomeDataByDate(ObservableList data) {
+
+        TransactionEntryRepo repo = new TransactionEntryRepo();
+        Collection<CashOutcomeEntry> fromRepo;
+
+        if (monthPicker.getValue() == null || monthPicker.getValue().equals("YEARLY")) {
+            fromRepo = repo.findCashOutcomeEntryByYear(Integer.parseInt(yearPicker.getValue().toString()));
+        } else {
+            fromRepo = repo.findCashOutcomeEntryByYearAndMonth(Integer.parseInt(yearPicker.getValue().toString()), MonthPicker.getMonthNumberFromString(monthPicker.getValue().toString()));
+        }
+        if (!fromRepo.isEmpty()) {
+            fromRepo.forEach(e -> data.add(new CashOutcomeEntry(e.getDate(), e.getDescription(), e.getAmount())));
+        }
+        return data;
+    }
+
+    public ObservableList<BankOutcomeEntry> createBankOutcomeDataByDate(ObservableList data) {
+
+        TransactionEntryRepo repo = new TransactionEntryRepo();
+        Collection<BankOutcomeEntry> fromRepo;
+
+        if (monthPicker.getValue() == null || monthPicker.getValue().equals("YEARLY")) {
+            fromRepo = repo.findBankOutcomeEntryByYear(Integer.parseInt(yearPicker.getValue().toString()));
+        } else {
+            fromRepo = repo.findBankOutcomeEntryByYearAndMonth(Integer.parseInt(yearPicker.getValue().toString()), MonthPicker.getMonthNumberFromString(monthPicker.getValue().toString()));
+        }
+        if (!fromRepo.isEmpty()) {
+            fromRepo.forEach(e -> data.add(new BankOutcomeEntry(e.getDate(), e.getDescription(), e.getAmount())));
+        }
+        return data;
+    }
+
 }
