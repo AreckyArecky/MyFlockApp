@@ -21,4 +21,8 @@ public class BankIncomeEntry extends TransactionEntry {
     public BankIncomeEntry(Date date, String description, Double amount) {
         super(date, description, amount);
     }
+
+    public BankIncomeEntry(Long id, Date date, String description, Double amount) {
+        super(id, date, description, amount);
+    }
 }

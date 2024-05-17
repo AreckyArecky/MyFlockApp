@@ -12,11 +12,17 @@ import java.sql.Date;
  * @author DevelopmentMPOS
  */
 @Entity
-public class BankOutcomeEntry extends TransactionEntry{
+public class BankOutcomeEntry extends TransactionEntry {
+
     public BankOutcomeEntry() {
         super();
     }
+
     public BankOutcomeEntry(Date date, String description, Double amount) {
         super(date, description, amount);
+    }
+
+    public BankOutcomeEntry(Long id, Date date, String description, Double amount) {
+        super(id, date, description, amount);
     }
 }

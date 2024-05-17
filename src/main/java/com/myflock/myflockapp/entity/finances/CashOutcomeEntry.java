@@ -21,5 +21,9 @@ public class CashOutcomeEntry extends TransactionEntry {
     public CashOutcomeEntry(Date date, String description, Double amount) {
         super(date, description, amount);
     }
+
+    public CashOutcomeEntry(Long id, Date date, String description, Double amount) {
+        super(id, date, description, amount);
+    }
 ;
 }

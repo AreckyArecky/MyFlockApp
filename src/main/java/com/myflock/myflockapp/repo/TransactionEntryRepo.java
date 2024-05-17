@@ -66,6 +66,11 @@ public class TransactionEntryRepo {
         return result;
     }
 
+    public BankIncomeEntry findBankIncomeById(Long id) {
+        em.clear();
+        return em.find(BankIncomeEntry.class, id);
+    }
+
 //    BANK OUTCOME ENTRY CREATE - EDIT - DELETE - FIND_BY-DATE
     public void createBankOutcomeEntry(Date date, String desc, Double amount) {
         BankOutcomeEntry entry = new BankOutcomeEntry(date, desc, amount);
@@ -102,12 +107,17 @@ public class TransactionEntryRepo {
 
     public Collection<BankOutcomeEntry> findBankOutcomeEntryByYearAndMonth(int year, int month) {
 
-        Query q = em.createNativeQuery("SELECT * FROM BankOutcomeEntry WHERE YEAR(date)= :year AND MONTH(date)= :month", BankIncomeEntry.class);
+        Query q = em.createNativeQuery("SELECT * FROM BankOutcomeEntry WHERE YEAR(date)= :year AND MONTH(date)= :month", BankOutcomeEntry.class);
         q.setParameter("year", year);
         q.setParameter("month", month);
         Collection<BankOutcomeEntry> result = (List<BankOutcomeEntry>) q.getResultList();
         result.forEach(r -> System.out.println(r.toString()));
         return result;
+    }
+
+    public BankOutcomeEntry findBankOutcomeById(Long id) {
+        em.clear();
+        return em.find(BankOutcomeEntry.class, id);
     }
 //    CASH INCOME ENTRY CREATE - EDIT - DELETE - FIND_BY_DATE
 
@@ -119,8 +129,23 @@ public class TransactionEntryRepo {
         trans.commit();
     }
 
-    public void updateCashIncomeEntry(CashIncomeEntry entry, Date date, String desc, Double amount) {
+    public void updateCashIncomeEntryById(Long id, Date date, String desc, Double amount) {
+
+        CashIncomeEntry entry = findCashIncomeById(id);
+
         EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        entry.setDate(date);
+        entry.setDescription(desc);
+        entry.setAmount(amount);
+        em.persist(entry);
+        trans.commit();
+    }
+
+    public void updateCashIncomeEntry(CashIncomeEntry entry, Date date, String desc, Double amount) {
+
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         entry.setDate(date);
         entry.setDescription(desc);
         entry.setAmount(amount);
@@ -133,6 +158,11 @@ public class TransactionEntryRepo {
         trans.begin();
         em.remove(entry);
         trans.commit();
+    }
+
+    public CashIncomeEntry findCashIncomeById(Long id) {
+        em.clear();
+        return em.find(CashIncomeEntry.class, id);
     }
 
     public Collection<CashIncomeEntry> findCashIncomeEntryByYear(int year) {
@@ -189,11 +219,16 @@ public class TransactionEntryRepo {
 
     public Collection<CashOutcomeEntry> findCashOutcomeEntryByYearAndMonth(int year, int month) {
 
-        Query q = em.createNativeQuery("SELECT * FROM CashOutcomeEntry WHERE YEAR(date)= :year AND MONTH(date)= :month", BankIncomeEntry.class);
+        Query q = em.createNativeQuery("SELECT * FROM CashOutcomeEntry WHERE YEAR(date)= :year AND MONTH(date)= :month", CashOutcomeEntry.class);
         q.setParameter("year", year);
         q.setParameter("month", month);
         Collection<CashOutcomeEntry> result = (List<CashOutcomeEntry>) q.getResultList();
         result.forEach(r -> System.out.println(r.toString()));
         return result;
+    }
+
+    public CashOutcomeEntry findCashOutcomeById(Long id) {
+        em.clear();
+        return em.find(CashOutcomeEntry.class, id);
     }
 }

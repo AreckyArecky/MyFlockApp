@@ -36,6 +36,13 @@ public class TransactionEntry {
         this.amount = amount;
     }
 
+    public TransactionEntry(Long id, Date date, String description, Double amount) {
+        this.id = id;
+        this.date = date;
+        this.description = description;
+        this.amount = amount;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -58,6 +65,10 @@ public class TransactionEntry {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     @Override
